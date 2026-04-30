@@ -3,8 +3,8 @@ import { registerValidate, loginValidate } from "../validations/userValidation.j
 
 export const Register = async(req, res) => {
  try {
-    
-
+   const {error} = registerValidate.validate(req.body)
+   return res.status(400).json({message: error.message})
  } catch (error) {
     console.log(error.message)
     res.status(500).json({message: "Something went wrong"})

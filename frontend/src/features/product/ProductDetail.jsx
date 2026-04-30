@@ -1,12 +1,12 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import { fetchProduct } from "../../api/product";
 import { useQuery } from "@tanstack/react-query";
+import { fetchProduct } from "../../api/product";
 
 const ProductDetail = () => {
   const params = useParams();
-  const { data, isLoading } = useQuery({ queryKey: ["product"], queryFn: () => fetchProduct(params.productId) });
-  console.log(data);
+
+  const {data} = useQuery({queryKey: ['product'], queryFn: () => fetchProduct(params.productId)})
+
   return (
     <div>
       <div className="bg-white">
@@ -43,15 +43,15 @@ const ProductDetail = () => {
           </nav>
 
           <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
-            <img src={data.thumbnail} alt={data.title} />
+            <img src={data?.thumbnail} alt={data?.title} />
 
             <div className="mt-4 lg:mt-0">
               <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{data.title}</h1>
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{data?.title}</h1>
               </div>
 
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl tracking-tight text-gray-900">${data.price}</p>
+              <p className="text-3xl tracking-tight text-gray-900">${data?.price}</p>
 
               <div className="mt-6">
                 <h3 className="sr-only">Reviews</h3>
@@ -156,7 +156,7 @@ const ProductDetail = () => {
                 <h3 className="sr-only">Description</h3>
 
                 <div className="space-y-6">
-                  <p className="text-base text-gray-900">{data.description}</p>
+                  <p className="text-base text-gray-900">{data?.description}</p>
                 </div>
               </div>
 

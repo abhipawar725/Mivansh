@@ -14,5 +14,8 @@ app.use(cookieParser())
 app.use(cors({origin: "", credentials: true}))
 
 app.use("/api/auth", authRouter)
+app.get("/login", (req, res) => {
+    res.send('<a href="/google">login with google</a>')
+})
 
 export default app;
